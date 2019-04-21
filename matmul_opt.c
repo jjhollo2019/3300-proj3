@@ -64,20 +64,32 @@ int main(int argc, char** argv)  {
       // *********************************************************
 
       for(j=0;j<k;j++) {
-        for(i=0;i<m;i++) {
+        for(i=0;i<m;i+=5) {
           A[i][j] = i+j+4.0;
+          A[i+1][j] = (i+1)+j+4.0;
+          A[i+2][j] = (i+2)+j+4.0;
+          A[i+3][j] = (i+3)+j+4.0;
+          A[i+4][j] = (i+4)+j+4.0;
         }
       }
 
       for(j=0;j<n;j++) {
-        for(i=0;i<k;i++) {
+        for(i=0;i<k;i+=5) {
           B[i][j] = i+j+5.0;
+          B[i+1][j] = (i+1)+j+5.0;
+          B[i+2][j] = (i+2)+j+5.0;
+          B[i+3][j] = (i+3)+j+5.0;
+          B[i+4][j] = (i+4)+j+5.0;
         }
       }
 
       for(j=0;j<n;j++) {
-        for(i=0;i<m;i++) {
+        for(i=0;i<m;i+=5) {
           C[i][j] = 0.0;
+          C[i+1][j] = 0.0;
+          C[i+2][j] = 0.0;
+          C[i+3][j] = 0.0;
+          C[i+4][j] = 0.0;
         }
       }
           
@@ -90,8 +102,12 @@ int main(int argc, char** argv)  {
       // **********************************
       for(j=0;j<n;j++) {
         for(l=0;l<k;l++) {
-          for(i=0;i<m;i++) {
+          for(i=0;i<m;i+=5) {
             C[i][j] = C[i][j] + B[l][j]*A[i][l];
+            C[i+1][j] = C[i+1][j] + B[l][j]*A[i+1][l];
+            C[i+2][j] = C[i+2][j] + B[l][j]*A[i+2][l];
+            C[i+3][j] = C[i+3][j] + B[l][j]*A[i+3][l];
+            C[i+4][j] = C[i+4][j] + B[l][j]*A[i+4][l];
           }
         }
       }
@@ -104,7 +120,7 @@ int main(int argc, char** argv)  {
       // * Comment out when timing                        *
       // **************************************************
 
- #ifdef PRINT_MATRIX
+ //#ifdef PRINT_MATRIX
       fprintf(stdout, "Here is the matrix A:\n\n");
       for(i=0;i<m;i++) {
         for(j=0;j<k;j++) {
@@ -126,7 +142,7 @@ int main(int argc, char** argv)  {
         }
         fprintf(stdout, "\n");
       }
-#endif        
+//#endif        
         
 }
 //     **  END MAIN PROGRAM  **
