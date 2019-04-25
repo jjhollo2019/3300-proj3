@@ -31,7 +31,6 @@ int main(int argc, char** argv)  {
  
       int l,m,n,k;
       int i,j;
-      double temp;
       double **A, **B, **C;
 
 
