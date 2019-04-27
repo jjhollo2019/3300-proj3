@@ -31,7 +31,6 @@ int main(int argc, char** argv)  {
  
       int l,m,n,k;
       int i,j;
-      double temp;
       double **A, **B, **C;
 
 
@@ -63,6 +62,7 @@ int main(int argc, char** argv)  {
       //  * optimize out                                         *
       // *********************************************************
 
+
       for(j=0;j<k;j+=5) {
         for(i=0;i<m;i+=5) {
           A[i][j] = i+j+4.0;
@@ -70,6 +70,7 @@ int main(int argc, char** argv)  {
           A[i+2][j] = (i+2)+j+4.0;
           A[i+3][j] = (i+3)+j+4.0;
           A[i+4][j] = (i+4)+j+4.0;
+
         }
         for(i=0;i<m;i+=5) {
           A[i][j+1] = i+(j+1)+4.0;
