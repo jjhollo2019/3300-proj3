@@ -36,7 +36,8 @@ int main(int argc, char** argv)  {
       int i,j;
       double **A, **B, **C;
 
-      double acc00, acc01, acc10, acc11;
+      double acc00, acc01, acc10, acc11; // Accumulators for Blocking
+      int ll;
 
 
      //  ****************************************************
@@ -179,19 +180,24 @@ int main(int argc, char** argv)  {
       // **********************************
       // * Perform simple matrix multiply *
       // **********************************
-      for (i=0;i<m;i+=2) {
-        for (l=0; l<k;l+=2) {
-          acc00 = acc01 = acc10 = acc11 = 0.0;
-          for (j=0; j<n;j++) {
-            acc00 += A[j][l+0] * B[i+0][j];
-            acc01 += A[j][l+1] * B[i+0][j];
-            acc10 += A[j][l+0] * B[i+1][j];
-            acc11 += A[j][l+1] * B[i+1][j];
+      for (ll=0; ll<k; ll+=BLK_SZ) {
+        for (i=0;i<m;i+=2) {
+          for (l=ll; l<ll+BLK_SZ;l+=2) {
+            acc00 = 0.0;
+            acc01 = 0.0;
+            acc10 = 0.0;
+            acc11 = 0.0;
+            for (j=0; j<n;j++) {
+              acc00 += A[j][l] * B[i][j];
+              acc01 += A[j][l+1] * B[i][j];
+              acc10 += A[j][l] * B[i+1][j];
+              acc11 += A[j][l+1] * B[i+1][j];
+            }
+            C[l][i] = acc00;
+            C[l+1][i] = acc01;
+            C[l][i+1] = acc10;
+            C[l+1][i+1] = acc11;
           }
-          C[l+0][i+0] = acc00;
-          C[l+1][i+0] = acc01;
-          C[l+0][i+1] = acc10;
-          C[l+1][i+1] = acc11;
         }
       }
       // ******************************
