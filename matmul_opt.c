@@ -359,7 +359,7 @@ int main(int argc, char** argv)  {
       // * Comment out when timing                        *
       // **************************************************
 
- //#ifdef PRINT_MATRIX
+ #ifdef PRINT_MATRIX
       fprintf(stdout, "Here is the matrix A:\n\n");
       for(i=0;i<m;i++) {
         for(j=0;j<k;j++) {
@@ -381,7 +381,7 @@ int main(int argc, char** argv)  {
         }
         fprintf(stdout, "\n");
       }
-//#endif        
+#endif        
         
 }
 //     **  END MAIN PROGRAM  **
