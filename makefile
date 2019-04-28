@@ -1,10 +1,13 @@
 default:
-	gcc -g -o run matmul_opt.c
+	gcc -Wall matmul_opt.c -o exe -O0
+	gcc -Wall matmul_naive.c -o exeTest -O0
 
 go:
-	./run 5 5 5 >> test.txt
+	./exe 1000 1000 1000 >> test.txt
+	./exeTest 1000 1000 1000 >> correct.txt
 
 test:
-	diff correct.txt test.txt
-clean:
-	rm run
+	diff test.txt correct.txt	
+
+make clean:
+	rm -f exe exeTest test.txt correct.txt
